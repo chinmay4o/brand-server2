@@ -6,6 +6,7 @@ import {userRouter} from "./router/auth.js";
 import {Mailrouter} from "./router/contact.js";
 import {resetRouter} from "./router/reset.js";
 import {resetmainRouter} from "./router/resetmain.js";
+import cookieParser from "cookie-parser";
 
 const app  = express();
 app.use(express.json());
@@ -14,6 +15,7 @@ var dd = {
     credentials : true
   };
   app.use(cors(dd));
+  app.use(cookieParser());
 dotenv.config({ path : "./config.env"});
 //mongodb connection
 const url = process.env.DATABASE;

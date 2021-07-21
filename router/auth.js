@@ -3,6 +3,7 @@ import { Users } from "../models/userSchema.js";
 import bcrypt from "bcrypt";
 import nodemailer from "nodemailer";
 import jwt from "jsonwebtoken";
+import {authenticate} from "../middlewares/authenticate.js"
 
 const router = express.Router();
 
@@ -83,7 +84,7 @@ router.post("/login", async (req, res) => {
         res.send(user);
       } else {
         throw new Error("passsword not valid");
-        rs.send("error");
+        res.send("error");
       }
     }
   } catch (err) {
@@ -91,5 +92,13 @@ router.post("/login", async (req, res) => {
     res.status(422).send(err);
   }
 });
+
+// about page auth
+router.get("/about" ,authenticate , async (req, res) => {
+    console.log(req.rootUser);
+    res.send(req.rootUser);
+
+    // res.send("success");
+})
 
 export const userRouter = router;

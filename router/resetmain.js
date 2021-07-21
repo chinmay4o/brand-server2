@@ -22,10 +22,10 @@ router.post("/resetmain", async (req, res) => {
       throw new Error("invalid detailes");
     } else {
       const user = await Users.findOne({ resetToken: resetToken });
-      //   const user = await Users.findOne({
-      //     resetToken: resetToken,
-      //     sessionExpiry: { $gt: new Date(Date.now()) },
-      //   });
+        // const user = await Users.findOne({
+        //   resetToken: resetToken,
+        //   sessionExpiry: { $gt: new Date(Date.now()) },
+        // });
       if (!user) {
         res.status(422).send("user not found");
         throw new Error("user not found");

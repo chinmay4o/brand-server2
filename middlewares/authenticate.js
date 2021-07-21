@@ -1,7 +1,7 @@
 import express from "express";
 import jwt from "jsonwebtoken";
 import { Users } from "../models/userSchema.js";
-import dotenv from "dotenv";
+
 
 const authenticate = async (req, res, next) => {
   const token = req.cookies.jwttoken;

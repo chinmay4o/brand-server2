@@ -5,10 +5,10 @@ import {Urls} from "../../models/UrlModel.js";
 const router = express.Router();
 
 router.post("/shorten", async (req, res) => {
-  const { longUrl } = req.body; // destructure the longUrl from req.body.longUrl
+  const { longUrl } = req.body; // destructure the longUrl
 
   const baseUrl = "http://localhost:5002";
-//   const baseUrl = "http://localhost:3000";
+  // const baseUrl = "http://localhost:3000";
 
   if (!validUrl.isUri(baseUrl)) {
     return res.status(401).json("Invalid base URL");
@@ -20,10 +20,7 @@ router.post("/shorten", async (req, res) => {
   // check long url if valid using the validUrl.isUri method
   if (validUrl.isUri(longUrl)) {
     try {
-      /* The findOne() provides a match to only the subset of the documents 
-            in the collection that match the query. In this case, before creating the short URL,
-            we check if the long URL was in the DB ,else we create it.
-            */
+     
       let url = await Urls.findOne({longUrl : longUrl});
 
       // url exist and return the response
@@ -54,3 +51,10 @@ router.post("/shorten", async (req, res) => {
 });
 
 export const routerUrl = router;
+
+
+
+ /* The findOne() provides a match to only the subset of the documents 
+            in the collection that match the query. In this case, before creating the short URL,
+            we check if the long URL was in the DB ,else we create it.
+            */

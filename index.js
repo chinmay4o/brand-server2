@@ -15,10 +15,15 @@ app.use(express.json({
   extended: false
 }));
 var dd = {
+    // origin : 'http://localhost:3001/',
     origin : true,
     credentials : true
   };
   app.use(cors(dd));
+  app.use((req, res, next) => {
+  // res.header({"Access-Control-Allow-Origin": "*"});
+  next();
+}) ;
   // app.use(cors());
   app.use(cookieParser());
 dotenv.config({ path : "./config.env"});
@@ -44,9 +49,6 @@ app.use("/" , routerRedirect);
 app.listen(process.env.PORT , () => console.log("listening on port " + process.env.PORT))
 
 
-
-
-
 // Enable CORS
 // app.use((req, res, next) => {
 //   res.header('Access-Control-Allow-Origin', '*');
@@ -54,6 +56,7 @@ app.listen(process.env.PORT , () => console.log("listening on port " + process.e
 //   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested With, Content-Type, Accept');
 //   next();
 // });
+
 // app.use((req, res, next) => {
 //   res.header({"Access-Control-Allow-Origin": "*"});
 //   next();

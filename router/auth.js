@@ -84,8 +84,13 @@ router.post("/login", async (req, res) => {
        await user.save();
        console.log(token);
 
-       res.cookie("jwttoken" , token);
+       res.cookie("jwttoken" , token , {
+        sameSite: "none",
+        httpOnly: true,
+        secure: true
+       });
         res.send(user);
+
       } else {
         throw new Error("passsword not valid");
       }

@@ -117,7 +117,13 @@ router.get("/dashboard" , authenticate , async (req, res) => {
 
 //logout button
 router.get("/logout" , async (req, res) => {
-  res.clearCookie("jwttoken");
+  res.clearCookie("jwttoken" , {
+    path: '/',
+    secure: false,
+    httpOnly: false,
+    domain: 'url-shortner4o.herokuapp.com',
+    sameSite: true,
+  });
   res.json({"message" : "cleared cookie"})
 })
 

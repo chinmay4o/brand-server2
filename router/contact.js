@@ -5,10 +5,11 @@ dotenv.config({ path: "./config.env"});
 const router = express.Router();
 
 const transporter = nodemailer.createTransport({
-  service: "gmail",
+  host: "in-v3.mailjet.com",
+  port: 587,
   auth: {
-    user: "surve4407@gmail.com",
-    pass: process.env.EMAIL_PASS
+    user: process.env.MAIL_USERNAME,
+    pass: process.env.MAIL_PASSWORD,
   },
 });
 
@@ -18,7 +19,7 @@ router.post("/contact", async (req, res) => {
 
   transporter.sendMail(
     {
-      from: "surve4407@gmail.com",
+      from: process.env.EMAIL,
       to: "chinmayinbox8@gmail.com",
       subject: email,
       html: `

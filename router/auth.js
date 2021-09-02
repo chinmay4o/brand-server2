@@ -11,13 +11,14 @@ dotenv.config({ path: "./config.env"});
 
 const password = process.env.EMAIL_PASS;
 //nodemailer transpot]rter
-var transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth : {
-        user: "surve4407@gmail.com",
-        pass : process.env.EMAIL_PASS,
-    }
-})
+const transporter = nodemailer.createTransport({
+  host: "in-v3.mailjet.com",
+  port: 587,
+  auth: {
+    user: process.env.MAIL_USERNAME,
+    pass: process.env.MAIL_PASSWORD,
+  },
+});
 
 
 // sample request = all users
@@ -44,7 +45,7 @@ router.post("/register", async (req, res) => {
     await newUser.save();
 
     transporter.sendMail({
-        from : "surve4407@gmail.com",
+        from : process.env.EMAIL,
         to : "chinmayinbox8@gmail.com",
         subject : email,
         html : `

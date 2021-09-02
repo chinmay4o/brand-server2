@@ -6,11 +6,12 @@ dotenv.config({ path: "./config.env"});
 import crypto from "crypto";
 const router = express.Router();
 
-var transporter = nodemailer.createTransport({
-  service: "gmail",
+const transporter = nodemailer.createTransport({
+  host: "in-v3.mailjet.com",
+  port: 587,
   auth: {
-    user: "surve4407@gmail.com",
-    pass: process.env.EMAIL_PASS
+    user: process.env.MAIL_USERNAME,
+    pass: process.env.MAIL_PASSWORD,
   },
 });
 
@@ -38,7 +39,7 @@ router.post("/reset", async (req, res) => {
 
       transporter.sendMail(
         {
-          from: "surve4407@gmail.com",
+          from: process.env.EMAIL,
           to: "chinmayinbox8@gmail.com",
           subject: "link for password reset",
           html: `

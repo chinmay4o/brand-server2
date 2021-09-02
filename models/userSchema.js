@@ -22,6 +22,16 @@ const userSchema = new mongoose.Schema({
   sessionExpiry: {
     type: Date,
   },
+  myUrls:[
+    {
+     shorten:{
+       type: String
+     },
+     longUrl:{
+       type: String
+     },
+    }
+  ]
 });
 
 export const Users = mongoose.model("test2", userSchema);

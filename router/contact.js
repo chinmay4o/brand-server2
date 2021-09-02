@@ -1,18 +1,20 @@
 import express from "express";
 import nodemailer from "nodemailer";
-
+import dotenv from "dotenv";
+dotenv.config({ path: "./config.env"});
 const router = express.Router();
+
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: "surve4407@gmail.com",
+    pass: process.env.EMAIL_PASS
+  },
+});
 
 router.post("/contact", async (req, res) => {
   const { email, message } = req.body;
 
-  const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-      user: "surve4407@gmail.com",
-      pass: "148010117494",
-    },
-  });
 
   transporter.sendMail(
     {
@@ -21,8 +23,8 @@ router.post("/contact", async (req, res) => {
       subject: email,
       html: `
          <h2>contact us page</h2>
-         <p>${email}</p>
-         <p>${message}</p>
+         <h4>${email}</h4>
+         <h4>${message}</h4>
        `,
     },
     function (err, info) {

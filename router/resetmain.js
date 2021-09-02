@@ -1,6 +1,8 @@
 import express from "express";
 import nodemailer from "nodemailer";
 import bcrypt from "bcrypt";
+import dotenv from "dotenv";
+dotenv.config({ path: "./config.env"});
 import { Users } from "../models/userSchema.js";
 
 const router = express.Router();
@@ -9,7 +11,7 @@ var transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
     user: "surve4407@gmail.com",
-    pass: "chinmay@4480",
+    pass: process.env.EMAIL_PASS
   },
 });
 

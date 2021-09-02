@@ -3,12 +3,13 @@ import validUrl from "valid-url";
 import shortid from "shortid";
 import {Urls} from "../../models/UrlModel.js";
 const router = express.Router();
+// import {Users} from "../../models/userSchema";
 
 router.post("/shorten", async (req, res) => {
   const { longUrl } = req.body; // destructure the longUrl
 
-  const baseUrl = "http://localhost:5002";
-  // const baseUrl = "http://localhost:3000";
+  // const baseUrl = "http://localhost:5002";
+  const baseUrl = "http://localhost:3000";
 
   if (!validUrl.isUri(baseUrl)) {
     return res.status(401).json("Invalid base URL");
@@ -37,8 +38,10 @@ router.post("/shorten", async (req, res) => {
           urlCode,
           date: new Date(),
         });
+
+
         await newUrl.save();
-        res.json(newUrl);
+        res.send(newUrl);
       }
     } catch (err) {
       // exception handler
@@ -49,6 +52,8 @@ router.post("/shorten", async (req, res) => {
     res.status(401).json("Invalid longUrl");
   }
 });
+
+
 
 export const routerUrl = router;
 

@@ -8,6 +8,7 @@ import {resetRouter} from "./router/reset.js";
 import {resetmainRouter} from "./router/resetmain.js";
 import {routerUrl} from "./router/UrlShortner/url.js";
 import {routerRedirect} from "./router/UrlShortner/redirect.js";
+import {updateRouter} from "./router/UrlShortner/userUrl.js";
 import cookieParser from "cookie-parser";
 
 const app  = express();
@@ -45,7 +46,7 @@ app.use("/" , resetRouter);
 app.use("/" , resetmainRouter);
 app.use("/" , routerUrl);
 app.use("/" , routerRedirect);
-
+// app.use("/" , updateRouter);
 app.listen(process.env.PORT , () => console.log("listening on port " + process.env.PORT))
 
 

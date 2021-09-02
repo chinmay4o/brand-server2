@@ -89,7 +89,7 @@ router.post("/login", async (req, res) => {
         httpOnly: true,
         secure: true
        });
-       
+
         res.send(user);
 
       } else {
@@ -117,7 +117,9 @@ router.get("/dashboard" , authenticate , async (req, res) => {
 
 //logout button
 router.get("/logout" , async (req, res) => {
-  res.clearCookie("jwttoken");
+  res.clearCookie("jwttoken" , {
+    domain: 'url-shortner4o.herokuapp.com'
+  });
   res.json({"message" : "cleared cookie"})
 })
 

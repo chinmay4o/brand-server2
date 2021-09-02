@@ -119,10 +119,10 @@ router.get("/dashboard" , authenticate , async (req, res) => {
 router.get("/logout" , async (req, res) => {
   res.clearCookie("jwttoken" , {
     path: '/',
-    secure: false,
-    httpOnly: false,
+    secure: true,
+    httpOnly: true,
     domain: 'url-shortner4o.herokuapp.com',
-    sameSite: true,
+    sameSite: "none",
   });
   res.json({"message" : "cleared cookie"})
 })

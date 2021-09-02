@@ -85,7 +85,7 @@ router.post("/login", async (req, res) => {
        console.log(token);
 
        res.cookie("jwttoken" , token , {
-        sameSite: true,
+        sameSite: "none",
         httpOnly: true,
         secure: true
        });

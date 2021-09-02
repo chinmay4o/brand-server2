@@ -85,8 +85,8 @@ router.post("/login", async (req, res) => {
        console.log(token);
 
        res.cookie("jwttoken" , token , {
-        // sameSite: "none",
-        sameSite:'strict',
+        sameSite: "none",
+        domain: 'urlshortner4o.netlify.app/',
         httpOnly: true,
         secure: true
        });

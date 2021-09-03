@@ -123,7 +123,7 @@ const cookieToken = req.cookies.jwttoken;
 await Users.findOneAndRemove({"tokens.token" : cookieToken });
     res.clearCookie(cookieToken);
     console.log(req.token);
-    await req.rootUser.save();
+    // await req.rootUser.save();
     res.json({ message: "cleared cookie" });
     res.render("login");
   } catch (err) {

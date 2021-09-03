@@ -117,7 +117,7 @@ router.get("/dashboard", authenticate, async (req, res) => {
 });
 
 //logout button
-router.get("/logout", async (req, res) => {
+router.post("/logout", async (req, res) => {
   try {
 const cookieToken = req.cookies.jwttoken;
 await Users.findOneAndRemove({"tokens.token" : cookieToken });

@@ -119,8 +119,9 @@ router.get("/dashboard", authenticate, async (req, res) => {
 //logout button
 router.get("/logout", async (req, res) => {
   try {
-
-    res.clearCookie("jwttoken");
+const cookieToken = req.cookies.jwttoken;
+await Users.findOneAndRemove({"tokens.token" : cookieToken });
+    res.clearCookie(cookieToken);
     console.log(req.token);
     await req.rootUser.save();
     res.json({ message: "cleared cookie" });
@@ -130,7 +131,7 @@ router.get("/logout", async (req, res) => {
   }
 });
 
-//patch request update the usee r wth his url
+//post request update the usee r wth his url
 router.post("/updates", async (req, res) => {
   const { id, shortUrl, longUrl } = req.body;
   const currentUser = await Users.findOne({ _id: id });

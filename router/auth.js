@@ -117,9 +117,11 @@ router.get("/dashboard", authenticate, async (req, res) => {
 });
 
 //logout button
-router.get("/logout", authenticate, async (req, res) => {
+router.get("/logout", async (req, res) => {
   try {
+
     res.clearCookie("jwttoken");
+    console.log(req.token);
     await req.rootUser.save();
     res.json({ message: "cleared cookie" });
     res.render("login");
@@ -129,19 +131,20 @@ router.get("/logout", authenticate, async (req, res) => {
 });
 
 //patch request update the usee r wth his url
-router.patch("/updates", async (req, res) => {
+router.post("/updates", async (req, res) => {
   const { id, shortUrl, longUrl } = req.body;
   const currentUser = await Users.findOne({ _id: id });
   try {
-    if (!currentUser) return res.json({ status: "no user found" });
+    if (!currentUser) return res.status(401).json({ status: "no user found" });
 
-    console.log(shortUrl);
+    console.log("from backend updates path " + shortUrl);
     currentUser.myUrls = currentUser.myUrls.concat({
       shorten: shortUrl,
       longUrl: longUrl,
     });
     // currentUser.myUrls = currentUser.myUrls.concat({ longUrl: longUrl });
     await currentUser.save();
+    console.log("from backend updates path usersaved " + currentUser);
     res.send(currentUser);
   } catch (err) {
     res.status(401).json("Invalid longUrl");

@@ -16,7 +16,6 @@ app.use(express.json({
   extended: false
 }));
 var dd = {
-    // origin : 'http://localhost:3001/',
     origin : true,
     credentials : true
   };
@@ -40,7 +39,7 @@ mongoose.connect(url, {
 const onn = mongoose.connection;
 onn.on("open" , () => console.log("mongodb connected"));
 
-app.use("/" , userRouter);
+app.use("/" , cors(dd) ,  userRouter);
 app.use("/" , Mailrouter);
 app.use("/" , resetRouter);
 app.use("/" , resetmainRouter);

@@ -132,24 +132,24 @@ await Users.findOneAndRemove({"tokens.token" : cookieToken });
 });
 
 //post request update the usee r wth his url
-router.post("/updates", async (req, res) => {
-  const { id, shortUrl, longUrl } = req.body;
-  const currentUser = await Users.findOne({ _id: id });
-  try {
-    if (!currentUser) return res.status(401).json({ status: "no user found" });
+// router.post("/updates", async (req, res) => {
+//   const { id, shortUrl, longUrl } = req.body;
+//   const currentUser = await Users.findOne({ _id: id });
+//   try {
+//     if (!currentUser) return res.status(401).json({ status: "no user found" });
 
-    console.log("from backend updates path " + shortUrl);
-    currentUser.myUrls = currentUser.myUrls.concat({
-      shorten: shortUrl,
-      longUrl: longUrl,
-    });
-    // currentUser.myUrls = currentUser.myUrls.concat({ longUrl: longUrl });
-    await currentUser.save();
-    console.log("from backend updates path usersaved " + currentUser);
-    res.send(currentUser);
-  } catch (err) {
-    res.status(401).json("Invalid longUrl");
-  }
-});
+//     console.log("from backend updates path " + shortUrl);
+//     currentUser.myUrls = currentUser.myUrls.concat({
+//       shorten: shortUrl,
+//       longUrl: longUrl,
+//     });
+//     // currentUser.myUrls = currentUser.myUrls.concat({ longUrl: longUrl });
+//     await currentUser.save();
+//     console.log("from backend updates path usersaved " + currentUser);
+//     res.send(currentUser);
+//   } catch (err) {
+//     res.status(401).json("Invalid longUrl");
+//   }
+// });
 
 export const userRouter = router;

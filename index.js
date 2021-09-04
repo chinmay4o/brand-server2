@@ -21,7 +21,7 @@ var dd = {
   };
   app.use(cors(dd));
   app.use((req, res, next) => {
-  // res.header({"Access-Control-Allow-Origin": "*"});
+  res.header({"Access-Control-Allow-Origin": "*"});
   next();
 }) ;
   // app.use(cors());
@@ -39,7 +39,7 @@ mongoose.connect(url, {
 const onn = mongoose.connection;
 onn.on("open" , () => console.log("mongodb connected"));
 
-app.use("/" , cors(dd) ,  userRouter);
+app.use("/" , userRouter);
 app.use("/" , Mailrouter);
 app.use("/" , resetRouter);
 app.use("/" , resetmainRouter);

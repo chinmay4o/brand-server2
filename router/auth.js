@@ -117,39 +117,39 @@ router.get("/dashboard", authenticate, async (req, res) => {
 });
 
 //logout button
-router.post("/logout", async (req, res) => {
-  try {
-const cookieToken = req.cookies.jwttoken;
-await Users.findOneAndRemove({"tokens.token" : cookieToken });
-    res.clearCookie(cookieToken);
-    console.log(req.token);
-    // await req.rootUser.save();
-    res.json({ message: "cleared cookie" });
-    res.render("login");
-  } catch (err) {
-    res.status(500).send(err);
-  }
-});
-
-//post request update the usee r wth his url
-// router.post("/updates", async (req, res) => {
-//   const { id, shortUrl, longUrl } = req.body;
-//   const currentUser = await Users.findOne({ _id: id });
+// router.post("/logout", async (req, res) => {
 //   try {
-//     if (!currentUser) return res.status(401).json({ status: "no user found" });
-
-//     console.log("from backend updates path " + shortUrl);
-//     currentUser.myUrls = currentUser.myUrls.concat({
-//       shorten: shortUrl,
-//       longUrl: longUrl,
-//     });
-//     // currentUser.myUrls = currentUser.myUrls.concat({ longUrl: longUrl });
-//     await currentUser.save();
-//     console.log("from backend updates path usersaved " + currentUser);
-//     res.send(currentUser);
+// const cookieToken = req.cookies.jwttoken;
+// await Users.findOneAndRemove({"tokens.token" : cookieToken });
+//     res.clearCookie(cookieToken);
+//     console.log(req.token);
+//     // await req.rootUser.save();
+//     res.json({ message: "cleared cookie" });
+//     res.render("login");
 //   } catch (err) {
-//     res.status(401).json("Invalid longUrl");
+//     res.status(500).send(err);
 //   }
 // });
+
+// post request update the usee r wth his url
+router.post("/updates", async (req, res) => {
+  const { id, shortUrl, longUrl } = req.body;
+  const currentUser = await Users.findOne({ _id: id });
+  try {
+    if (!currentUser) return res.status(401).json({ status: "no user found" });
+
+    console.log("from backend updates path " + shortUrl);
+    currentUser.myUrls = currentUser.myUrls.concat({
+      shorten: shortUrl,
+      longUrl: longUrl,
+    });
+
+    await currentUser.save();
+    console.log("from backend updates path usersaved " + currentUser);
+    res.send(currentUser);
+  } catch (err) {
+    res.status(401).json("Invalid longUrl");
+  }
+});
 
 export const userRouter = router;

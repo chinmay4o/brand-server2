@@ -15,15 +15,18 @@ const app  = express();
 app.use(express.json({
   extended: false
 }));
+
 var dd = {
-    origin : true,
+    origin : "https://urlshortner4o.netlify.app",
     credentials : true
   };
-  app.use(cors(dd));
-  app.use((req, res, next) => {
-  res.header({"Access-Control-Allow-Origin": "*"});
-  next();
-}) ;
+
+app.use(cors(dd));
+
+//   app.use((req, res, next) => {
+//   res.header({"Access-Control-Allow-Origin": "*"});
+//   next();
+// }) ;
   // app.use(cors());
   app.use(cookieParser());
 dotenv.config({ path : "./config.env"});

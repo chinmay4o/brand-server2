@@ -23,6 +23,4 @@ router.get("/:code", async (req, res) => {
   }
 });
 
-
-
 export const routerRedirect = router;

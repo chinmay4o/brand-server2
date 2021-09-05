@@ -4,7 +4,8 @@ import { Users } from "../models/userSchema.js";
 
 
 const authenticate = async (req, res, next) => {
-  const token = req.cookies.jwttoken;
+  const token = req.headers["access-token"];
+  // req.body.token || req.query.token || req.headers["x-access-token"];
   try {
     const verifyToken = jwt.verify(token, process.env.SECRET_KEY);
     if (!verifyToken) {

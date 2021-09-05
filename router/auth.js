@@ -92,7 +92,7 @@ router.post("/login", async (req, res) => {
           secure: true,
         });
 
-        res.send(user);
+        res.json({user , tokenAll : token});
       } else {
         throw new Error("passsword not valid");
       }

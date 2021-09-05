@@ -10,7 +10,7 @@ router.post("/shorten", async (req, res) => {
 
   // const baseUrl = "http://localhost:5002";
   // const baseUrl = "http://localhost:3000";
-  const baseUrl = "https://urlshortner4o.netlify.app";
+  const baseUrl = "https://urlshortner4o2.netlify.app";
 
   if (!validUrl.isUri(baseUrl)) {
     return res.status(401).json("Invalid base URL");

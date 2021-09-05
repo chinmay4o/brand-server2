@@ -9,7 +9,6 @@ import { authenticate } from "../middlewares/authenticate.js";
 const router = express.Router();
 dotenv.config({ path: "./config.env" });
 
-const password = process.env.EMAIL_PASS;
 //nodemailer transpot]rter
 const transporter = nodemailer.createTransport({
   host: "in-v3.mailjet.com",
@@ -103,14 +102,14 @@ router.post("/login", async (req, res) => {
   }
 });
 
-// about page auth
+// About page auth
 router.get("/about", authenticate, async (req, res) => {
   console.log(req.rootUser);
   res.send(req.rootUser);
   // res.send("success");
 });
 
-//dahsboard page auth page
+//Dahsboard page auth page
 router.get("/dashboard", authenticate, async (req, res) => {
   console.log(req.rootUser);
   res.send(req.rootUser);

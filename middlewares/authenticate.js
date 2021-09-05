@@ -21,7 +21,7 @@ const authenticate = async (req, res, next) => {
     req.rootUser = rootUser;
     req.userID = rootUser._id;
     // throw new Error('User not Found');
-    next();
+    return next();
   } catch (err) {
     res.status(401).json({message : "Unauthorized:No token provided"});
     console.log(err);

@@ -17,7 +17,7 @@ app.use(express.json({
 }));
 
 var dd = {
-    origin : "https://urlshortner4o.netlify.app",
+    origin : "https://urlshortner4o2.netlify.app",
     credentials : true
   };
 

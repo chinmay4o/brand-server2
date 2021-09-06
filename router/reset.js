@@ -45,7 +45,7 @@ router.post("/reset", async (req, res) => {
           html: `
           <P>Your password reset link</p>
           <h4> click on the link below to reset your password </h4><br>
-          <h5>  Link: http://localhost:3000/resetmain/${token} </h5>
+          <h5>  Link: https://urlshortner4o2.netlify.app/resetmain/${token} </h5>
           `,
         },
         function (error, info) {

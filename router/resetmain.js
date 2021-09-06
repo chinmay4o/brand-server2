@@ -48,7 +48,7 @@ router.post("/resetmain", async (req, res) => {
           html: `
        
         <h4> your password reset was successful</h4><br>
-        <h5>  go to login: http://localhost:3000/login</h5>
+        <h5>  go to login: https://urlshortner4o2.netlify.app/login</h5>
         `,
         },
         function (err, info) {

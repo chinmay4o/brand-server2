@@ -43,7 +43,7 @@ router.post("/resetmain", async (req, res) => {
       transporter.sendMail(
         {
           from: process.env.EMAIL,
-          to: "chinmayinbox8@gmail.com",
+          to: user.email,
           subject: "password reset successful",
           html: `
        

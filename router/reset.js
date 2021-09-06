@@ -40,7 +40,7 @@ router.post("/reset", async (req, res) => {
       transporter.sendMail(
         {
           from: process.env.EMAIL,
-          to: "chinmayinbox8@gmail.com",
+          to: user.email,
           subject: "link for password reset",
           html: `
           <P>Your password reset link</p>

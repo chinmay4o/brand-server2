@@ -9,6 +9,7 @@ import { resetmainRouter } from "./router/resetmain.js";
 import { routerUrl } from "./router/UrlShortner/url.js";
 import { routerRedirect } from "./router/UrlShortner/redirect.js";
 import { updateRouter } from "./router/UrlShortner/userUrl.js";
+import { customerRouter } from "./router/customer.js";
 import cookieParser from "cookie-parser";
 
 const app = express();
@@ -19,7 +20,8 @@ app.use(
 );
 
 var dd = {
-  origin: "https://urlshortner4o2.netlify.app",
+  // origin: "https://urlshortner4o2.netlify.app",
+  origin: "https://onebrand4o.netlify.app/",
   // origin: true,
   credentials: true,
 };
@@ -41,11 +43,9 @@ const onn = mongoose.connection;
 onn.on("open", () => console.log("mongodb connected"));
 
 app.use("/", userRouter);
-app.use("/", Mailrouter);
-app.use("/", resetRouter);
-app.use("/", resetmainRouter);
-app.use("/", routerUrl);
-app.use("/", routerRedirect);
+
+app.use("/brand", customerRouter);
+
 app.listen(process.env.PORT, () =>
   console.log("listening on port " + process.env.PORT)
 );
